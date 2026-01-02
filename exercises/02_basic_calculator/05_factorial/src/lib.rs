@@ -10,6 +10,8 @@
 //
 // Use only what you learned! No loops yet, so you'll have to use recursion!
 
+fn factorial()
+
 #[cfg(test)]
 mod tests {
     use crate::factorial;
