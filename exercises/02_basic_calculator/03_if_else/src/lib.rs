@@ -2,7 +2,17 @@
 /// `13` if `n` is divisible by `3`,
 /// `17` otherwise.
 fn magic_number(n: u32) -> u32 {
-    todo!()
+    let ret = if n % 2 == 0 {
+        12u32
+    } else {
+        if n %3 ==0 {
+            13u32
+        } else {
+            17u32
+        }
+    };
+
+    return ret;
 }
 
 #[cfg(test)]
