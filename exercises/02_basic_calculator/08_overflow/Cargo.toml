@@ -9,6 +9,6 @@ edition = "2021"
 # We'll re-enable them again once we explain how visibility works in Rust.
 dead_code = "allow"
 
-[profile.dev]
+[profile.test]
 opt-level = 1               # Use slightly better optimizations.
 overflow-checks = false     # Disable integer overflow checks.
