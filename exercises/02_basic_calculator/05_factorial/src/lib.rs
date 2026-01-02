@@ -10,7 +10,9 @@
 //
 // Use only what you learned! No loops yet, so you'll have to use recursion!
 
-fn factorial()
+fn factorial(i:u32) -> u32 {
+    return 1u32
+}
 
 #[cfg(test)]
 mod tests {
