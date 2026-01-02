@@ -12,3 +12,10 @@ resolver = "2"
 # regardless of the "global" setting for `overflow-checks` on the `dev` profile.
 [profile.dev.package.copy]
 overflow-checks = true
+
+# 针对开发和测试配置
+[profile.dev]
+overflow-checks = false  # 关闭溢出检查，让溢出自动回绕
+
+[profile.test]
+overflow-checks = false  # 专门为测试配置
