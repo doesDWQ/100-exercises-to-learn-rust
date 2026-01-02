@@ -11,7 +11,11 @@
 // Use only what you learned! No loops yet, so you'll have to use recursion!
 
 fn factorial(i:u32) -> u32 {
-    return 1u32
+    return if i == 0 {
+        1u32
+    } else {
+        factorial(i) * factorial(i-1)
+    };
 }
 
 #[cfg(test)]
