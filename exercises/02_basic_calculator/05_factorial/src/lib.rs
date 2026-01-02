@@ -14,7 +14,7 @@ fn factorial(i:u32) -> u32 {
     return if i == 0 {
         1u32
     } else {
-        factorial(i) * factorial(i-1)
+        i * factorial(i-1)
     };
 }
 
