@@ -22,7 +22,9 @@ impl Order {
     pub fn new(product_name: String,
     quantity: u32,
     unit_price: u32) ->Order {
-        
+        Self::verify_product_name(&product_name);
+        Self::verify_quantity(&quantity);
+        Self::verify_unit_price(&unit_price);
 
         Order {
             product_name,
@@ -31,15 +33,55 @@ impl Order {
         }
     }
 
-    fn verify_product_name(&self, product_name: &String){
-        
+    pub fn product_name(&self) ->&String {
+        return &self.product_name
     }
 
-    fn verify_quantity(&self, quantity: &u32){
-        
+    pub fn quantity(&self) ->&u32 {
+        return &self.quantity
     }
 
-    fn verify_unit_price(&self, unit_price: &u32){
-        
+    pub fn unit_price(&self) ->&u32 {
+        return &self.unit_price
+    }
+
+    pub fn set_product_name(&mut self, product_name: String) {
+        Self::verify_product_name(&product_name);
+        self.product_name = product_name;
+    }
+
+    pub fn set_quantity(&mut self, quantity: u32) {
+        Self::verify_quantity(&quantity);
+        self.quantity = quantity;
+    }
+
+    pub fn set_unit_price(&mut self, unit_price: u32) {
+        Self::verify_unit_price(&unit_price);
+        self.unit_price = unit_price;
+    }
+
+    fn verify_product_name(product_name: &String){
+        if product_name.is_empty() {
+            panic!("product_name 不能为空！")
+        }
+        if product_name.len() > 300 {
+            panic!("product_name 不能超过300字节！")
+        }
+    }
+
+    fn verify_quantity(quantity: &u32){
+        if *quantity == 0u32 {
+            panic!("quantity 必须大于0！")
+        }
+    }
+
+    fn verify_unit_price(unit_price: &u32){
+        if *unit_price == 0u32 {
+            panic!("unit_price 必须大于0！")
+        }
+    }
+
+    pub fn total(&self) ->u32 {
+        self.quantity * self.unit_price
     }
 }
