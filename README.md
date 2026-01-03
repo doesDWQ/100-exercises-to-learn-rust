@@ -1,3 +1,7 @@
+当前进度
+https://rust-exercises.com/100-exercises/04_traits/08_sized.html
+
+
 # Learn Rust, one exercise at a time
 
 You've heard about Rust, but you never had the chance to try it out?\
