@@ -27,7 +27,7 @@ pub struct A {
 }
 
 pub struct B {
-    name: String
+    pub name: String
 }
 
 impl B {
@@ -39,9 +39,10 @@ impl B {
 impl Deref for A {
     type Target = B;
     
-    fn deref(&self) -> &Self::Target {
-        &self
+    fn deref(&self) -> &self::Target {
+        &B{name:String::from("aaaa")}
     }
+    
 }
 
 #[cfg(test)]
