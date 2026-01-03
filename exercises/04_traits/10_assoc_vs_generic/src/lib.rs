@@ -14,12 +14,26 @@
 // implementations manually. Venture further only if you're curious.
 
 pub trait Power <T> {
-    fn power(&self, t: T) -> T;
+    fn power(&self, t: T) -> u32;
 }
 
-impl Power<u16> for u16 {
-    fn power(&self, t: u16) -> u16 {
-        return self
+impl Power<u16> for u32 {
+    fn power(&self, t: u16) -> u32 {
+        let mut ret = 1;
+        for _ in 1..=t {
+            ret = ret * self
+        }
+        ret
+    }
+}
+
+impl Power<u32> for u32 {
+    fn power(&self, t: u32) -> u32 {
+        let mut ret = 1;
+        for _ in 1..=t {
+            ret = ret * self
+        }
+        ret
     }
 }
 
