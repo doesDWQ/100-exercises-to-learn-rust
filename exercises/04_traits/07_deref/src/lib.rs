@@ -23,11 +23,17 @@ impl Ticket {
 }
 
 pub struct A {
-    pub name: String,
+    name: String,
 }
 
 pub struct B {
-    pub name: String
+    name: String
+}
+
+impl B {
+    pub fn name(&self) -> &str {
+        &self.name
+    } 
 }
 
 impl Deref for A {
@@ -40,14 +46,13 @@ impl Deref for A {
 
 #[cfg(test)]
 mod tests {
-    use std::any::Any;
 
     use super::*;
 
     fn test_deref(){
         let a = A{name:String::from("dwq")};
         let b = &a;
-        
+        assert_eq!(b.name(), "dwq")
     }
 
     #[test]
