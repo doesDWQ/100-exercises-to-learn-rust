@@ -14,12 +14,12 @@
 // implementations manually. Venture further only if you're curious.
 
 trait Power {
-    fn power(value:u32) ->u32,
+    fn power(value:u32) ->u32;
 }
 
-impl From<u32> for Power {
-    fn from(value: u32) -> Self {
-        
+impl From<Power> for u32 {
+    fn from(value: Power) -> Self {
+        todo!()
     }
 } 
 
