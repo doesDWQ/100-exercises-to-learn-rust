@@ -1,7 +1,7 @@
 // TODO: implement the necessary traits to make the test compile and pass.
 //  You *can't* modify the test.
 
-#[derive(Debug,Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub struct WrappingU32 {
     value: u32,
 }
@@ -17,7 +17,7 @@ impl Add for WrappingU32 {
     type Output = WrappingU32;
 
     fn add(self, rhs: Self) -> Self::Output {
-        WrappingU32{value: self.value + rhs.value}
+        WrappingU32{value: self.value.wrapping_add(rhs.value) }
     }
 }
 
