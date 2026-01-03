@@ -37,11 +37,10 @@ impl B {
 }
 
 impl Deref for A {
-    type Target = String;
+    type Target = B;
 
-    fn deref(&self) -> Target {
-        let a = String::from("hello dwq");
-        return a
+    fn deref(&self) -> &Self::Target {
+        return &self.b
     }
     
 }
