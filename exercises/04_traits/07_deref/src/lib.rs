@@ -23,7 +23,7 @@ impl Ticket {
 }
 
 pub struct A {
-    name: String,
+    b: B,
 }
 
 pub struct B {
@@ -38,9 +38,9 @@ impl B {
 
 impl Deref for A {
     type Target = B;
-    
-    fn deref(&self) -> &self::Target {
-        &B{name:String::from("aaaa")}
+
+    fn deref(&self) -> &B {
+        &self.b
     }
     
 }
@@ -52,7 +52,7 @@ mod tests {
 
     #[test]
     fn test_deref(){
-        let a = A{name:String::from("dwq")};
+        let a = A{ b: B { name: "dwq".to_string() } };
         let b = &a;
         assert_eq!(b.name(), "dwq");
     }
