@@ -11,14 +11,12 @@ pub struct Ticket {
 }
 
 impl Ticket {
-    type Target Ticket;
-
     pub fn title(&self) -> &str {
-        &self.title
+       &self.title.trim()
     }
 
     pub fn description(&self) -> &str {
-        &self.description
+        &self.description.trim()
     }
 }
 
