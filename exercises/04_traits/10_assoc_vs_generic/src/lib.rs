@@ -13,16 +13,6 @@
 // You don't have to though: it's perfectly okay to write three separate
 // implementations manually. Venture further only if you're curious.
 
-trait Power {
-    fn power(value:u32) ->u32;
-}
-
-impl From<Power> for u32 {
-    fn from(value: Power) -> Self {
-        todo!()
-    }
-} 
-
 #[cfg(test)]
 mod tests {
     use super::Power;
