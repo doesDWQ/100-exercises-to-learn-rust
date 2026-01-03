@@ -5,3 +5,12 @@ pub fn example() {
     // TODO: Comment out the following line and move on to the next exercise.
     std::mem::size_of::<str>();
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn test_example(){
+        example();
+    }
+}
