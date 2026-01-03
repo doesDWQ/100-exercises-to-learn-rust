@@ -49,10 +49,11 @@ mod tests {
 
     use super::*;
 
+    #[test]
     fn test_deref(){
         let a = A{name:String::from("dwq")};
         let b = &a;
-        assert_eq!(b.name(), "dwq")
+        assert_eq!(b.name(), "dwq");
     }
 
     #[test]
