@@ -9,5 +9,32 @@
 //
 // Tests are located in the `tests` folder—pay attention to the visibility of your types and methods.
 
-struct SaturatingU16{}
+use std::ops::Add;
 
+struct SaturatingU16(u16);
+
+impl From<&u8> for SaturatingU16{
+    fn from(value: &u8) -> Self {
+        SaturatingU16(*value as u16)
+    }
+}
+
+impl From<u8> for SaturatingU16{
+    fn from(value: u8) -> Self {
+        SaturatingU16(value as u16)
+    }
+}
+
+impl From<u16> for SaturatingU16{
+    fn from(value: u16) -> Self {
+        SaturatingU16(value)
+    }
+}
+
+impl Add for SaturatingU16 {
+    type Output = SaturatingU16;
+
+    fn add(self, rhs: Self) -> Self::Output {
+        SaturatingU16(self.0 + rhs.0)
+    }
+}
