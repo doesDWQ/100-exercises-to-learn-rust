@@ -11,7 +11,7 @@
 
 use std::ops::Add;
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone, Copy)]
 pub struct SaturatingU16(u16);
 
 impl From<&u8> for SaturatingU16{
