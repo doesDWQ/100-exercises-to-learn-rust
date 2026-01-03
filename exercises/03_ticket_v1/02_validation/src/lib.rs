@@ -22,6 +22,10 @@ impl Ticket {
             panic!("Title cannot be empty")
         }
 
+        if description.len() == 0 {
+            panic!("Description cannot be empty")
+        }
+
         
 
         Self {
