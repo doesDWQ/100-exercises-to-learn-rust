@@ -11,7 +11,7 @@
 
 use std::ops::Add;
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Debug, PartialEq)]
 pub struct SaturatingU16(u16);
 
 impl From<&u8> for SaturatingU16{
@@ -43,5 +43,15 @@ impl Add for SaturatingU16 {
 
     fn add(self, rhs: Self) -> Self::Output {
         SaturatingU16(self.0.wrapping_add(rhs.0))
+    }
+}
+
+impl PartialEq<u16> for SaturatingU16 {
+    fn eq(&self, other: &u16) -> bool {
+        if self.0 == *other {
+            true
+        } else {
+            false
+        }
     }
 }
