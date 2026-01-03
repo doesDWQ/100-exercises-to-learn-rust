@@ -50,7 +50,7 @@ impl Add<u16> for SaturatingU16 {
     type Output = SaturatingU16;
 
     fn add(self, rhs: u16) -> Self::Output {
-        SaturatingU16(self.0.wrapping_add(rhs))
+        SaturatingU16(self.0.saturating_add(rhs))
     }
 }
 
@@ -58,7 +58,7 @@ impl Add<&SaturatingU16> for SaturatingU16 {
     type Output = SaturatingU16;
 
     fn add(self, rhs: &SaturatingU16) -> Self::Output {
-        SaturatingU16(self.0.wrapping_add(rhs.0))
+        SaturatingU16(self.0.saturating_add(rhs.0))
     }
 }
 

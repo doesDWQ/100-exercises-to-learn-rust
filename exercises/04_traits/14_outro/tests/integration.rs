@@ -6,7 +6,7 @@ fn test_saturating_u16() {
     let b: SaturatingU16 = 5u8.into();
     let c: SaturatingU16 = u16::MAX.into();
     let d: SaturatingU16 = (&1u16).into();
-    let e = &c;
+    let e: &SaturatingU16 = &c;
 
     assert_eq!(a + b, SaturatingU16::from(15u16)); // ok
     assert_eq!(a + c, SaturatingU16::from(u16::MAX)); // ok
