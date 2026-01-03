@@ -1,5 +1,5 @@
 当前进度
-https://rust-exercises.com/100-exercises/04_traits/08_sized.html
+https://rust-exercises.com/100-exercises/05_ticket_v2/00_intro.html
 
 
 # Learn Rust, one exercise at a time
