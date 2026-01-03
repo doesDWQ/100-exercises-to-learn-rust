@@ -4,7 +4,9 @@ pub struct WrappingU32 {
     value: u32,
 }
 
+impl
+
 fn example() {
     let wrapping: WrappingU32 = 42.into();
-    let wrapping = WrappingU32::from(42);
+    let wrapping: WrappingU32 = WrappingU32::from(42);
 }
