@@ -34,7 +34,7 @@ impl Ticket {
             panic!("Description cannot be longer than 500 bytes")
         }
 
-        if status != "done" || status != "In Progress" {
+        if status != "Done" && status != "In Progress" {
             panic!("Only `To-Do`, `In Progress`, and `Done` statuses are allowed")
         }
 
