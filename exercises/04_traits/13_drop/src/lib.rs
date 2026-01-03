@@ -3,16 +3,26 @@
 //  You can see the expected API in the tests below.
 
 struct DropBomb {
-    
+    defuse: bool
 }
 
 impl DropBomb {
     pub fn new() -> DropBomb{
-        DropBomb{}
+        DropBomb{
+            defuse: true
+        }
     }
 
-    pub fn defuse(&self) {
+    pub fn defuse(&mut self) {
+        self.defuse = false
+    }
+}
 
+impl Drop for DropBomb {
+    fn drop(&mut self) {
+        if self.defuse {
+            panic!("投下了一个炸弹！")
+        }
     }
 }
 
