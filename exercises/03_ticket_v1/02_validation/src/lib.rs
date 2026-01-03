@@ -4,11 +4,6 @@ struct Ticket {
     status: String,
 }
 
-enum Status {
-    "Done"
-    "In Progress"
-}
-
 impl Ticket {
     // TODO: implement the `new` function.
     //  The following requirements should be met:
@@ -39,7 +34,7 @@ impl Ticket {
             panic!("Description cannot be longer than 500 bytes")
         }
 
-        if status != "Done" && status != "In Progress" {
+        if status != "done" || status != "In Progress" {
             panic!("Only `To-Do`, `In Progress`, and `Done` statuses are allowed")
         }
 
