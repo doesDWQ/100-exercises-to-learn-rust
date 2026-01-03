@@ -4,6 +4,8 @@
 //   find it in the documentation for `String`.
 //   Can you figure out where it is defined and how to use it?
 
+use std::ops::Deref;
+
 pub struct Ticket {
     title: String,
     description: String,
@@ -20,9 +22,33 @@ impl Ticket {
     }
 }
 
+pub struct A {
+    pub name: String,
+}
+
+pub struct B {
+    pub name: String
+}
+
+impl Deref for A {
+    type Target = B;
+    
+    fn deref(&self) -> &Self::Target {
+        &self
+    }
+}
+
 #[cfg(test)]
 mod tests {
+    use std::any::Any;
+
     use super::*;
+
+    fn test_deref(){
+        let a = A{name:String::from("dwq")};
+        let b = &a;
+        
+    }
 
     #[test]
     fn test_normalization() {
