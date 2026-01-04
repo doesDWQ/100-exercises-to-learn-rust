@@ -34,15 +34,6 @@ impl Ticket {
             panic!("Description cannot be longer than 500 bytes");
         }
 
-        // if match status {
-        //     Status::Done => | s | => { println!("{:?}", s) },
-        //     Status::ToDo => | s | => { println!("{:?}", s) },
-        //     Status::InProgress => |status| => { println!("{:?}", s) },
-        // }
-        // if status != Status::ToDo && status != Status::InProgress && status != Status::Done {
-        //     panic!("Only `To-Do`, `In Progress`, and `Done` statuses are allowed");
-        // }
-
         Ticket {
             title,
             description,
