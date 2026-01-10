@@ -1,5 +1,5 @@
 [workspace]
-members = ["anyhow",
+members = ["anyhow", "error",
   "exercises/*/*",
   "helpers/common",
   "helpers/mdbook-exercise-linker",

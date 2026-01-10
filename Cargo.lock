@@ -658,6 +658,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "error"
+version = "0.1.0"
+
+[[package]]
 name = "error_enums"
 version = "0.1.0"
 dependencies = [
