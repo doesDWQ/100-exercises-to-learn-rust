@@ -4,6 +4,18 @@
 
 pub struct TicketDescription(String);
 
+impl TryFrom<String> for TicketDescription {
+    type Error = TicketDescriptionError;
+
+    fn try_from(value: String) -> Result<Self, Self::Error> {
+        todo!()
+    }
+}
+
+enum TicketDescriptionError {
+    IsEmpty,
+    ToLong,
+}
 
 
 #[cfg(test)]
