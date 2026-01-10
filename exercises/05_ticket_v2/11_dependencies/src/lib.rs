@@ -5,11 +5,12 @@
 // with the crate name (`anyhow`, in this case).
 
 
-use anyhow::Error;
+
 
 #[cfg(test)]
 mod tests {
-
+    use anyhow::Error;
+    
     #[test]
     fn it_works() {
         println!("{:?}", Error::Unknown);
