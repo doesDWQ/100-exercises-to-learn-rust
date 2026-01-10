@@ -3,14 +3,12 @@
 
 // When you import a type (`Error`) from a dependency, the import path must start
 // with the crate name (`anyhow`, in this case).
-
-
-
+use anyhow::Error;
 
 #[cfg(test)]
 mod tests {
     use anyhow::Error;
-    
+
     #[test]
     fn it_works() {
         println!("{:?}", Error::Unknown);
