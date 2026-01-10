@@ -17,7 +17,12 @@ impl Iterator for TicketStore {
     type Item = Ticket;
     
     fn next(&mut self) -> Option<Self::Item> {
-        self.tickets.pop()
+        if self.index < self.tickets.len() {
+            self.index +=1;
+            Some(self.tickets[self.index].clone())
+        } else {
+            None
+        }
     }
 }
 
