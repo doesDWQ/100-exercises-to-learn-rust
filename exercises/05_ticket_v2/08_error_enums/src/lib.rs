@@ -11,7 +11,16 @@ enum TicketNewError {
 //   When the description is invalid, instead, it should use a default description:
 //   "Description not provided".
 fn easy_ticket(title: String, description: String, status: Status) -> Ticket {
-    todo!()
+     let after_description: String;
+    if description.len() > 500 || description.len() == 0{
+        after_description = String::from("Description not provided");
+    }else {
+        after_description = description;
+    }
+    match Ticket::new(title, after_description, status) {
+        Ok(ticket) => ticket,
+        Err(err) => panic!("{}", err),
+    }
 }
 
 #[derive(Debug, PartialEq)]
