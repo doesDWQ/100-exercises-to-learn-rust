@@ -13,13 +13,11 @@ pub struct TicketStore {
     tickets: Vec<Ticket>,
 }
 
-impl IntoIterator for TicketStore {
+impl Iterator for TicketStore {
     type Item = Ticket;
-
-    type IntoIter;
-
-    fn into_iter(self) -> Self::IntoIter {
-        todo!()
+    
+    fn next(&mut self) -> Option<Self::Item> {
+        self.tickets.pop()
     }
 }
 
