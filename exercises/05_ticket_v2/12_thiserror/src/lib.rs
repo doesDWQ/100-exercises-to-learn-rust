@@ -4,7 +4,7 @@
 //   You'll also have to add `thiserror` as a dependency in the `Cargo.toml` file.
 
 
-#[derive(thiserror::Error, Debug)]
+#[derive(Debug, thiserror::Error)]
 enum TicketNewError {
     #[error("Title cannot be empty")]
     TitleCannotBeEmpty,
