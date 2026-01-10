@@ -36,6 +36,14 @@ impl TicketStore {
     }
 }
 
+impl Iterator for TicketStore{
+    type Item = Ticket;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        self.tickets.iter().next()
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
