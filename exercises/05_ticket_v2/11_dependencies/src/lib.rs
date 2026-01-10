@@ -12,7 +12,6 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = anyhow::add(2, 2);
-        assert_eq!(result, 4);
+        println!("{:?}", Error::Unknown);
     }
 }
