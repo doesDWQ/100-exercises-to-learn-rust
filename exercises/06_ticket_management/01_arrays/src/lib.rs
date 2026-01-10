@@ -16,7 +16,7 @@ pub enum Weekday {
 
 impl WeekTemperatures {
     pub fn new() -> Self {
-        todo!()
+        Self {  }
     }
 
     pub fn get_temperature(&self, day: Weekday) -> Option<i32> {
