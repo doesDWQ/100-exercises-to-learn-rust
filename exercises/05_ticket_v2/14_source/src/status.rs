@@ -27,6 +27,7 @@ pub struct ParseStatusError {
     invalid_status: String,
 }
 
+
 #[cfg(test)]
 mod tests {
     use super::*;
