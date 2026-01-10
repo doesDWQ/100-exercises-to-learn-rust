@@ -2,3 +2,8 @@
 name = "packages"
 version = "0.1.0"
 edition = "2021"
+
+# 默认会创建二进制目标
+# 包含 lib 会创建库目标
+[lib]
+crate-type = ["lib"]
