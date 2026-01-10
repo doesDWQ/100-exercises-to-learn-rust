@@ -13,16 +13,13 @@ pub struct TicketStore {
     tickets: Vec<Ticket>,
 }
 
-impl Iterator for TicketStore {
+impl IntoIterator for TicketStore {
     type Item = Ticket;
-    
-    fn next(&mut self) -> Option<Self::Item> {
-        if self.index < self.tickets.len() {
-            self.index +=1;
-            Some(self.tickets[self.index].clone())
-        } else {
-            None
-        }
+
+    type IntoIter = std::vec::IntoIter<Self::Item>;
+
+    fn into_iter(self) -> Self::IntoIter {
+       self.tickets.into_iter()
     }
 }
 
