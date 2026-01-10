@@ -2,7 +2,10 @@
 //   When the description is invalid, instead, it should use a default description:
 //   "Description not provided".
 fn easy_ticket(title: String, description: String, status: Status) -> Ticket {
-    todo!()
+    switch Ticket::new(title, description, status) {
+        Ok(ticket) => ticket,
+        Err(err) => panic!("{}", err.unwrap()),
+    }
 }
 
 #[derive(Debug, PartialEq, Clone)]
