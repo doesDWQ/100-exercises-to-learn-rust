@@ -18,6 +18,18 @@ impl TryFrom<String> for TicketDescription {
     }
 }
 
+impl TryFrom<&str> for TicketDescription {
+    type Error = TicketDescriptionError;
+
+    fn try_from(value: &str) -> Result<Self, Self::Error> {
+        if value.len() > 0 {
+            Ok(TicketDescription(value.to_string()))
+        } else {
+            Err(TicketDescriptionError("The description cannot be empty".to_string()))
+        }
+    }
+}
+
 #[derive(thiserror::Error, Debug)]
 #[error("{0}")]
 struct TicketDescriptionError(String);
