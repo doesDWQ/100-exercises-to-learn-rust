@@ -52,7 +52,7 @@ impl TryFrom<&str> for Status {
         if value.len() == 0 {
             Err(Status::InvalidStatus(ParseStatusError{invalid_status:"字符串不能为空".to_string()}))
         } else {
-            match value {
+            match value.to_lowercase().as_str() {
                 "todo" => Ok(Status::ToDo),
                 "inprogress" => Ok(Status::InProgress),
                 "done" => Ok(Status::Done),
