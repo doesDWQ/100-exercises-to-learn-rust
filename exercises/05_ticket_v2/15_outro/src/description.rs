@@ -2,7 +2,6 @@
 //   enforcing that the description is not empty and is not longer than 500 bytes.
 //   Implement the traits required to make the tests pass too.
 
-use core::error;
 
 #[derive(Debug, Clone)]
 pub struct TicketDescription(String);
@@ -19,8 +18,8 @@ impl TryFrom<String> for TicketDescription {
     }
 }
 
-#[derive(Debug)]
-enum TicketDescriptionError(string)
+#[derive(thiserror::Error, Debug)]
+struct TicketDescriptionError(String);
 
 
 #[cfg(test)]
