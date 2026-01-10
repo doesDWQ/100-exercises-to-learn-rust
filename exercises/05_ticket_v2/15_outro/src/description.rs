@@ -10,13 +10,7 @@ impl TryFrom<String> for TicketDescription {
     type Error = TicketDescriptionError;
 
     fn try_from(value: String) -> Result<Self, Self::Error> {
-        if value.is_empty() {
-            Err(TicketDescriptionError("The description cannot be empty".to_string()))
-        } else if value.len() > 500 {
-            Err(TicketDescriptionError("The description cannot be longer than 500 bytes".to_string()))
-        } else {
-            Ok(TicketDescription(value))
-        }
+        Self::try_from(value)
     }
 }
 
@@ -24,23 +18,36 @@ impl TryFrom<&str> for TicketDescription {
     type Error = TicketDescriptionError;
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
-        if value.len() > 0 {
-            Ok(TicketDescription(value.to_string()))
+        Self::try_from(value.to_string())
+    }
+}
+
+impl TicketDescription {
+    fn try_from(value: String) -> Result<Self, TicketDescriptionError> {
+        if value.is_empty() {
+            Err(TicketDescriptionError::Empty)
+        } else if value.len() > 500 {
+            Err(TicketDescriptionError::TooLong)
         } else {
-            Err(TicketDescriptionError("The description cannot be empty".to_string()))
+            Ok(TicketDescription(value))
         }
     }
 }
 
 #[derive(thiserror::Error, Debug)]
 #[error("{0}")]
-pub struct TicketDescriptionError(String);
+pub enum TicketDescriptionError {
+    #[error("The description cannot be empty")]
+    Empty,
+
+    #[error("The description cannot be longer than 500 bytes")]
+    TooLong,   
+}
 
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::convert::TryFrom;
 
     #[test]
     fn test_try_from_string() {

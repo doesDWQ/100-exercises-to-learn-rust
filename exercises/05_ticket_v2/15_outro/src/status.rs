@@ -30,10 +30,16 @@ impl TryFrom<String> for Status {
     type Error = Status;
 
     fn try_from(value: String) -> Result<Self, Self::Error> {
+        Self::validate(value)
+    }
+}
+
+impl Status {
+    fn validate(value:String) -> Result<Self, Self> {
         if value.len() == 0 {
             Err(Status::InvalidStatus(ParseStatusError{invalid_status:"字符串不能为空".to_string()}))
         } else {
-            match value.as_str() {
+            match value.to_lowercase().as_str() {
                 "todo" => Ok(Status::ToDo),
                 "inprogress" => Ok(Status::InProgress),
                 "done" => Ok(Status::Done),
@@ -49,18 +55,7 @@ impl TryFrom<&str> for Status {
     type Error = Status;
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
-        if value.len() == 0 {
-            Err(Status::InvalidStatus(ParseStatusError{invalid_status:"字符串不能为空".to_string()}))
-        } else {
-            match value.to_lowercase().as_str() {
-                "todo" => Ok(Status::ToDo),
-                "inprogress" => Ok(Status::InProgress),
-                "done" => Ok(Status::Done),
-                _ => Err(Status::InvalidStatus(ParseStatusError {
-                    invalid_status: value.to_string(),
-                })),
-            }
-        }
+        Self::validate(value.to_string())
     }
 }
 
