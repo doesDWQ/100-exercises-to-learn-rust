@@ -3,9 +3,9 @@
 //   "Description not provided".
 fn easy_ticket(title: String, description: String, status: Status) -> Ticket {
     let after_description: String;
-    if description == ""{
+    if description.len() > 500 || description.len() == 0{
         after_description = String::from("Description not provided");
-    } else {
+    }else {
         after_description = description;
     }
     match Ticket::new(title, after_description, status) {
