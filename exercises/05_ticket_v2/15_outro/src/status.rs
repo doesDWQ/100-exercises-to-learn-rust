@@ -3,7 +3,7 @@
 
 use std::fmt::Display;
 
-#[derive(thiserror::Error, Debug, PartialEq)]
+#[derive(thiserror::Error, Debug, PartialEq,Clone)]
 pub enum Status {
     ToDo,
     InProgress,
@@ -20,7 +20,7 @@ impl Display for Status {
     }
 }
 
-#[derive(Debug, thiserror::Error,PartialEq)]
+#[derive(Debug, thiserror::Error,PartialEq,Clone)]
 #[error("`{invalid_status}` is not a valid status, Use one of:ToDo, InProgress, Done")]
 pub struct ParseStatusError{
     invalid_status: String,

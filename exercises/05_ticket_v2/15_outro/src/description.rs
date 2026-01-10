@@ -10,10 +10,12 @@ impl TryFrom<String> for TicketDescription {
     type Error = TicketDescriptionError;
 
     fn try_from(value: String) -> Result<Self, Self::Error> {
-        if value.len() > 0 {
-            Ok(TicketDescription(value))
-        } else {
+        if value.is_empty() {
             Err(TicketDescriptionError("The description cannot be empty".to_string()))
+        } else if value.len() > 500 {
+            Err(TicketDescriptionError("The description cannot be longer than 500 bytes".to_string()))
+        } else {
+            Ok(TicketDescription(value))
         }
     }
 }
@@ -32,7 +34,7 @@ impl TryFrom<&str> for TicketDescription {
 
 #[derive(thiserror::Error, Debug)]
 #[error("{0}")]
-struct TicketDescriptionError(String);
+pub struct TicketDescriptionError(String);
 
 
 #[cfg(test)]

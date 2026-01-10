@@ -3,7 +3,7 @@
 //   Implement the traits required to make the tests pass too.
 
 
-#[derive(Debug)]
+#[derive(Debug,PartialEq,Clone)]
 pub struct TicketTitle(String);
 
 
@@ -34,7 +34,7 @@ impl TryFrom<&str> for TicketTitle {
 
 #[derive(thiserror::Error,Debug)]
 #[error("{0}")]
-struct TicketTitleError(String);
+pub struct TicketTitleError(String);
 
 #[cfg(test)]
 mod tests {
