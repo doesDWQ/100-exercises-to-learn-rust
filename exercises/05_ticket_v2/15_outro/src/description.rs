@@ -3,7 +3,7 @@
 //   Implement the traits required to make the tests pass too.
 
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct TicketDescription(String);
 
 impl TryFrom<String> for TicketDescription {
@@ -13,12 +13,13 @@ impl TryFrom<String> for TicketDescription {
         if value.len() > 0 {
             Ok(TicketDescription(value))
         } else {
-            Err(TicketDescriptionError::IsEmpty)
+            Err(TicketDescriptionError("The description cannot be empty".to_string()))
         }
     }
 }
 
 #[derive(thiserror::Error, Debug)]
+#[error("{0}")]
 struct TicketDescriptionError(String);
 
 
