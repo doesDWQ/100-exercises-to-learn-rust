@@ -1,6 +1,8 @@
 // TODO: Implement `TryFrom<String>` and `TryFrom<&str>` for the `Status` enum.
 //  The parsing should be case-insensitive.
 
+use std::fmt::Display;
+
 #[derive(thiserror::Error, Debug, PartialEq)]
 pub enum Status {
     ToDo,
@@ -10,6 +12,12 @@ pub enum Status {
         #[from]
         ParseStatusError
     )
+}
+
+impl Display for Status {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        todo!()
+    }
 }
 
 #[derive(Debug, thiserror::Error,PartialEq)]
