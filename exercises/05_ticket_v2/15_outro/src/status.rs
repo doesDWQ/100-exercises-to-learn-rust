@@ -55,7 +55,7 @@ impl TryFrom<&str> for Status {
     type Error = Status;
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
-        value.try_into()
+        value.to_string().try_into()
     }
 }
 
