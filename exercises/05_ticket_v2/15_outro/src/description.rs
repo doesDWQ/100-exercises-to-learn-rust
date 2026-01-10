@@ -10,7 +10,7 @@ impl TryFrom<String> for TicketDescription {
     type Error = TicketDescriptionError;
 
     fn try_from(value: String) -> Result<Self, Self::Error> {
-        Self::try_from(value)
+        Self::try_from_inner(value)
     }
 }
 
@@ -18,12 +18,12 @@ impl TryFrom<&str> for TicketDescription {
     type Error = TicketDescriptionError;
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
-        Self::try_from(value.to_string())
+        Self::try_from_inner(value.to_string())
     }
 }
 
 impl TicketDescription {
-    fn try_from(value: String) -> Result<Self, TicketDescriptionError> {
+    fn try_from_inner(value: String) -> Result<Self, TicketDescriptionError> {
         if value.is_empty() {
             Err(TicketDescriptionError::Empty)
         } else if value.len() > 500 {
