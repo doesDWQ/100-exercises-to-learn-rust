@@ -4,11 +4,18 @@
 // When you import a type (`Error`) from a dependency, the import path must start
 // with the crate name (`anyhow`, in this case).
 
+pub mod anyhow {
+    pub enum Error{
+        Unknown,
+        Ok,
+    }
+}
 
+use anyhow::Error;
 
 #[cfg(test)]
 mod tests {
-    use anyhow::Error;
+    
 
     #[test]
     fn a() {
