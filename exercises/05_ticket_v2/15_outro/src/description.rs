@@ -8,7 +8,11 @@ impl TryFrom<String> for TicketDescription {
     type Error = TicketDescriptionError;
 
     fn try_from(value: String) -> Result<Self, Self::Error> {
-        todo!()
+        if value.len() > 0 {
+            Ok(TicketDescription(value))
+        } else {
+            Err(TicketDescriptionError::IsEmpty)
+        }
     }
 }
 
