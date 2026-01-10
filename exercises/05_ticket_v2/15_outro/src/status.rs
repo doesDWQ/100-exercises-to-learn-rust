@@ -26,14 +26,6 @@ pub struct ParseStatusError{
     invalid_status: String,
 }
 
-impl TryFrom<String> for Status {
-    type Error = Status;
-
-    fn try_from(value: String) -> Result<Self, Self::Error> {
-        Self::validate(value)
-    }
-}
-
 impl Status {
     fn validate(value:String) -> Result<Self, Self> {
         if value.len() == 0 {
@@ -51,11 +43,19 @@ impl Status {
     }
 }
 
+impl TryFrom<String> for Status {
+    type Error = Status;
+
+    fn try_from(value: String) -> Result<Self, Self::Error> {
+        Self::validate(value)
+    }
+}
+
 impl TryFrom<&str> for Status {
     type Error = Status;
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
-        Self::validate(value.to_string())
+        value.try_into()
     }
 }
 
