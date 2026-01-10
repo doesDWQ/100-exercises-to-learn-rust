@@ -4,7 +4,6 @@ pub struct WeekTemperatures {
     nums: [Option<i32>; 7],
 }
 
-#[derive(Clone, Copy)]
 pub enum Weekday {
     Monday,
     Tuesday,
@@ -92,6 +91,7 @@ mod tests {
             week_temperatures.get_temperature(Weekday::Saturday),
             Some(50)
         );
+        assert_eq!(week_temperatures.get_temperature(Weekday::Sunday), Some(55));
         assert_eq!(week_temperatures.get_temperature(Weekday::Sunday), Some(55));
     }
 }
