@@ -25,10 +25,39 @@ impl TryFrom<String> for Status {
         if value.len() == 0 {
             Err(Status::InvalidStatus(ParseStatusError{invalid_status:"字符串不能为空".to_string()}))
         } else {
-            Ok(Status::Done)
+            match value.as_str() {
+                "todo" => Ok(Status::ToDo),
+                "inprogress" => Ok(Status::InProgress),
+                "done" => Ok(Status::Done),
+                _ => Err(Status::InvalidStatus(ParseStatusError {
+                    invalid_status: value,
+                })),
+            }
         }
     }
 }
+
+impl TryFrom<&str> for Status {
+    type Error = Status;
+
+    fn try_from(value: &str) -> Result<Self, Self::Error> {
+        if value.len() == 0 {
+            Err(Status::InvalidStatus(ParseStatusError{invalid_status:"字符串不能为空".to_string()}))
+        } else {
+            match value {
+                "todo" => Ok(Status::ToDo),
+                "inprogress" => Ok(Status::InProgress),
+                "done" => Ok(Status::Done),
+                _ => Err(Status::InvalidStatus(ParseStatusError {
+                    invalid_status: value.to_string(),
+                })),
+            }
+        }
+    }
+}
+
+
+
 
 #[cfg(test)]
 mod tests {
