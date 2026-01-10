@@ -34,13 +34,9 @@ impl TicketStore {
     pub fn add_ticket(&mut self, ticket: Ticket) {
         self.tickets.push(ticket);
     }
-}
 
-impl Iterator for TicketStore{
-    type Item = Ticket;
-
-    fn next(&mut self) -> Option<Self::Item> {
-        self.tickets.iter().next()
+    pub fn iter(&self)  -> std::slice::Iter<'_, Ticket>{
+        self.tickets.iter()
     }
 }
 
