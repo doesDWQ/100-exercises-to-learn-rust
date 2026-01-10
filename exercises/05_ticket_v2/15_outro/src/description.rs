@@ -2,6 +2,7 @@
 //   enforcing that the description is not empty and is not longer than 500 bytes.
 //   Implement the traits required to make the tests pass too.
 
+#[derive(Debug, Clone)]
 pub struct TicketDescription(String);
 
 impl TryFrom<String> for TicketDescription {
@@ -16,6 +17,7 @@ impl TryFrom<String> for TicketDescription {
     }
 }
 
+#[derive(Debug)]
 enum TicketDescriptionError {
     IsEmpty,
     ToLong,
