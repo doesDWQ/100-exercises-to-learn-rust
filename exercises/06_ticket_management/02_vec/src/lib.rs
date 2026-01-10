@@ -11,17 +11,14 @@
 // We expect `fibonacci(0)` to return `0`, `fibonacci(1)` to return `1`,
 // `fibonacci(2)` to return `1`, and so on.
 
-static fibonacciNums = vec![0,1]
-
 
 pub fn fibonacci(n: u32) -> u32 {
-    if n == 0 {
-        0
-    } else if n == 1 {
-        1
-    } else {
-        2
+    let n = n as usize;
+    let mut nums = vec![0,1];
+    for i in 2..=n {
+        nums.push(nums[i-1] + nums[i-2])
     }
+    nums[n]
 }
 
 #[cfg(test)]
