@@ -1,18 +1,18 @@
 // TODO: Convert the implementation to use bounded channels.
 use crate::data::{Ticket, TicketDraft};
 use crate::store::{TicketId, TicketStore};
-use std::sync::mpsc::{Receiver, Sender};
+use std::sync::mpsc::{Receiver, SyncSender};
 
 pub mod data;
 pub mod store;
 
 #[derive(Clone)]
 pub struct TicketStoreClient {
-    sender: todo!(),
+    sender: SyncSender<Command>,
 }
 
 impl TicketStoreClient {
-    pub fn insert(&self, draft: TicketDraft) -> Result<TicketId, todo!()> {
+    pub fn insert(&self, draft: TicketDraft) {
         let (response_channel,response_receiver) = std::sync::mpsc::sync_channel(10);
         self.sender.send(Command::Insert {
              draft, 
@@ -27,15 +27,15 @@ impl TicketStoreClient {
 }
 
 pub fn launch(capacity: usize) -> TicketStoreClient {
-    todo!();
+    let (sender, receiver) = std::sync::mpsc::sync_channel(capacity);
     std::thread::spawn(move || server(receiver));
-    todo!()
+    TicketStoreClient { sender }
 }
 
 enum Command {
     Insert {
         draft: TicketDraft,
-        response_channel: todo!(),
+        response_channel: SyncSender<TicketId>,
     },
     Get {
         id: TicketId,
