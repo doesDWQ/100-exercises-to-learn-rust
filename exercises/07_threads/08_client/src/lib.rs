@@ -8,6 +8,7 @@ pub mod store;
 #[derive(Clone)]
 // TODO: flesh out the client implementation.
 pub struct TicketStoreClient {
+    sender: Sender<Command>,
     receiver: Receiver<Command>,
 }
 
@@ -26,10 +27,12 @@ pub fn launch() -> TicketStoreClient {
     let (sender, receiver) = std::sync::mpsc::channel();
     std::thread::spawn(move || server(receiver));
     TicketStoreClient{
-        receiver
+        sender,
+        receiver,
     }
 }
 
+#[derive(Clone)]
 // No longer public! This becomes an internal detail of the library now.
 enum Command {
     Insert {
