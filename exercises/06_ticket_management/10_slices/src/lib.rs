@@ -3,12 +3,7 @@
 
 
 pub fn sum(list:&[u32]) -> u32 {
-    let mut ret = 0;
-    for num in list {
-        ret += num;
-    }
-
-    ret
+    list.iter().sum()
 }
 
 #[cfg(test)]
