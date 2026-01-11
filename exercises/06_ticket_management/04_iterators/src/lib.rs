@@ -18,7 +18,7 @@ impl IntoIterator for TicketStore {
 
     type IntoIter = std::vec::IntoIter<Self::Item>;
 
-    fn into_iter(self) -> Self::IntoIter {
+    fn into_iter(self) -> std::slice::Iter<'a, Ticket> {
        self.tickets.into_iter()
     }
 }

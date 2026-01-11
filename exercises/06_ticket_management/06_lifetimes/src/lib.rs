@@ -41,7 +41,7 @@ impl<'a> IntoIterator for TicketStore {
 
     type IntoIter = std::slice::Iter<'a, Ticket>;
 
-    fn into_iter(self) -> Self::IntoIter {
+    fn into_iter(self) -> std::slice::Iter<'a, Ticket> {
         self.tickets.iter()
     }
 }
