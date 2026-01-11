@@ -23,10 +23,12 @@ pub fn launch() -> Sender<Command> {
 //  the channel, then execute it, then start waiting
 //  for the next command.
 pub fn server(receiver: Receiver<Command>) {
-    let mut ticket_store = TicketStore::new();
+    let mut store = TicketStore::new();
     while let Ok(cmd) = receiver.recv(){
-        if let Command::Insert(ticket_draft) = cmd {
-            ticket_store.add_ticket(ticket_draft);
+        match cmd {
+            Command::Insert(ticket_draft) => {
+                store.add_ticket(ticket_draft);
+            },
         }
     }
 }
