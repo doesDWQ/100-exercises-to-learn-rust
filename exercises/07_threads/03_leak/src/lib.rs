@@ -6,8 +6,8 @@
 use std::thread::{self, spawn};
 
 pub fn sum(v: Vec<i32>) -> i32 {
-    let afetrV = v.leak();
-    let (v1,v2) = afetrV.split_at(afetrV.len()/2);
+    let afetr_v = v.leak();
+    let (v1,v2) = afetr_v.split_at(afetr_v.len()/2);
     // v1.to_vec().leak();
     // v2.to_vec().leak();
     let h1 = spawn(move||{
