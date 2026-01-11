@@ -60,13 +60,22 @@ impl TicketStore {
     }
 }
 
-impl<'a> Index<TicketId> for TicketStore {
-    type Output = &'a Ticket;
+impl Index<TicketId> for TicketStore {
+    type Output = Ticket;
 
-    fn index(&'a self, index: TicketId) -> Self::Output {
-        self.get(index)
+    fn index(&self, index: TicketId) -> &Self::Output {
+        self.tickets.iter().find(|&t| t.id == index).unwrap()
     }
 }
+
+impl Index<&TicketId> for TicketStore {
+    type Output = Ticket;
+
+    fn index(&self, index: &TicketId) -> &Self::Output {
+        self.tickets.iter().find(|&t| t.id == *index).unwrap()
+    }
+}
+
 
 #[cfg(test)]
 mod tests {
