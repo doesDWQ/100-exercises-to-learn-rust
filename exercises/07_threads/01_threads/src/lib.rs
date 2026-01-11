@@ -18,19 +18,18 @@ pub fn sum(v: Vec<i32>) -> i32 {
     let mid = v.len() / 2;
     let (left, right) = v.split_at(mid);
 
-    let mut ret1 = 0;
-    let mut ret2 = 0;
-    let handle1 = thread::spawn(||{
-       ret1 = left.iter().sum();
+    let v1 = left.to_vec();
+    let v2 = right.to_vec();
+
+    let handle1 = thread::spawn(move ||{
+       v1.into_iter().sum::<i32>()
     });
 
-    let handle2 = thread::spawn(||{
-       ret2 = right.iter().sum();
+    let handle2 = thread::spawn(move ||{
+       v2.into_iter().sum::<i32>()
     });
 
-    handle2.join().unwrap();
-    handle1.join().unwrap();
-    ret1+ret2
+    handle2.join().unwrap() + handle1.join().unwrap()
 }
 
 #[cfg(test)]
