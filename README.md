@@ -1,5 +1,4 @@
-当前进度
-https://rust-exercises.com/100-exercises/07_threads/06_interior_mutability.html
+https://rust-exercises.com/100-exercises/07_threads/10_patch.html
 
 
 # Learn Rust, one exercise at a time
