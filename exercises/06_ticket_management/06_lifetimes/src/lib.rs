@@ -31,18 +31,18 @@ impl TicketStore {
         self.tickets.push(ticket);
     }
 
-    pub fn iter(&self) -> std::slice::Iter<Ticket> {
+    pub fn iter(&'_ self) -> std::slice::Iter<'_, Ticket> {
         self.tickets.iter()
     }
 }
 
-impl IntoIterator for TicketStore {
-    type Item = Ticket;
+impl<'a> IntoIterator for TicketStore {
+    type Item = &'a Ticket;
 
-    type IntoIter: Iterator<Item = Self::Item>;
+    type IntoIter = std::slice::Iter<'a, Ticket>;
 
     fn into_iter(self) -> Self::IntoIter {
-        
+        self.tickets.iter()
     }
 }
 
