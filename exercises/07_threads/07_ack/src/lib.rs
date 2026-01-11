@@ -10,7 +10,10 @@ pub enum Command {
         draft: TicketDraft,
         response_sender: Sender<TicketId>
     },
-    Get { todo!() }
+    Get { 
+        id: TicketId,
+        response_sender: Sender<Ticket>
+    }
 }
 
 pub fn launch() -> Sender<Command> {
@@ -24,13 +27,19 @@ pub fn server(receiver: Receiver<Command>) {
     let mut store = TicketStore::new();
     loop {
         match receiver.recv() {
-            Ok(Command::Insert {}) => {
-                todo!()
+            Ok(Command::Insert {
+                draft,
+                response_sender,
+            }) => {
+                let id = store.add_ticket(draft);
+                response_sender.send(id).unwrap();
             }
             Ok(Command::Get {
-                todo!()
+                id,
+                response_sender,
             }) => {
-                todo!()
+                let ticket = store.get(id).unwrap();
+                response_sender.send(ticket.clone()).unwrap();
             }
             Err(_) => {
                 // There are no more senders, so we can safely break
