@@ -1,5 +1,5 @@
 当前进度
-https://rust-exercises.com/100-exercises/05_ticket_v2/05_nullability.html
+https://rust-exercises.com/100-exercises/07_threads/06_interior_mutability.html
 
 
 # Learn Rust, one exercise at a time
