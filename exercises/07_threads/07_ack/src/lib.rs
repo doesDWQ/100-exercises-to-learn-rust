@@ -38,8 +38,8 @@ pub fn server(receiver: Receiver<Command>) {
                 id,
                 response_sender,
             }) => {
-                let ticket = store.get(id).unwrap();
-                response_sender.send(Some(ticket.clone())).unwrap()
+                let ticket = store.get(id);
+                response_sender.send(ticket.cloned()).unwrap()
             }
             Err(_) => {
                 // There are no more senders, so we can safely break
