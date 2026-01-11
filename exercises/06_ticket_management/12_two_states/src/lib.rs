@@ -56,7 +56,8 @@ impl TicketStore {
     }
 
     pub fn get(&self, id: TicketId) -> Option<&Ticket> {
-        self.tickets.get(id.0)
+        let index = id.0
+        self.tickets.get(index)
     }
 }
 
