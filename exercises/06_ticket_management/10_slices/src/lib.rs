@@ -1,6 +1,16 @@
 // TODO: Define a function named `sum` that takes a reference to a slice of `u32` and returns the sum of all
 //  elements in the slice.
 
+
+pub fn sum(list:&[u32]) -> u32 {
+    let mut ret = 0;
+    for num in list {
+        ret += num;
+    }
+
+    ret
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
