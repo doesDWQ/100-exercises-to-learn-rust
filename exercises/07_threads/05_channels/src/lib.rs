@@ -1,6 +1,6 @@
 use std::sync::mpsc::{Receiver, Sender};
 
-use crate::data::{Ticket, TicketDraft};
+use crate::{data::{Ticket, TicketDraft}, store::TicketStore};
 
 pub mod data;
 pub mod store;
@@ -23,12 +23,10 @@ pub fn launch() -> Sender<Command> {
 //  the channel, then execute it, then start waiting
 //  for the next command.
 pub fn server(receiver: Receiver<Command>) {
-    loop {
-        let cmd = receiver.recv().unwrap();
-        let var_name = match cmd {
-            Command::Insert(d) => |d| {
-                println!("{:?}", d);
-            }
-        };
+    let mut ticket_store = TicketStore::new();
+    while let Ok(cmd) = receiver.recv(){
+        if let cmd = Command::Insert(ticket_draf) {
+
+        }
     }
 }
