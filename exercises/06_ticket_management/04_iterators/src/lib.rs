@@ -13,15 +13,7 @@ pub struct TicketStore {
     tickets: Vec<Ticket>,
 }
 
-impl IntoIterator for TicketStore {
-    type Item = Ticket;
-
-    type IntoIter = std::vec::IntoIter<Self::Item>;
-
-    fn into_iter(self) -> std::slice::Iter<'a, Ticket> {
-       self.tickets.into_iter()
-    }
-}
+impl 
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct Ticket {
