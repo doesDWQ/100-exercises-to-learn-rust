@@ -13,12 +13,13 @@ pub struct TicketStoreClient {
 impl TicketStoreClient {
     // Feel free to panic on all errors, for simplicity.
     pub fn insert(&self, draft: TicketDraft) -> TicketId {
-        let (sender,receiver) = std::sync::mpmc::channel();
+        let (response_channel,response_receiver) = std::sync::mpmc::channel();
         self.sender.send(Command::Insert {
-             draft:draft, 
-             response_channel:sender,
-             }).unwrap();
-        receiver.recv().
+             draft, 
+             response_channel,
+             }).expect("Did you actually spawn a thread? The channel is closed!");
+        let id = response_receiver.recv().expect("No response received!");
+        id
     }
 
     pub fn get(&self, id: TicketId) -> Option<Ticket> {
