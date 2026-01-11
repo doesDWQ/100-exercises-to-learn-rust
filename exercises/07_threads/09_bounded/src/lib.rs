@@ -58,14 +58,14 @@ pub fn server(receiver: Receiver<Command>) {
                 response_channel,
             }) => {
                 let id = store.add_ticket(draft);
-                todo!()
+                response_channel.try_send(id).unwrap();
             }
             Ok(Command::Get {
                 id,
                 response_channel,
             }) => {
                 let ticket = store.get(id);
-                todo!()
+                response_channel.try_send(ticket.cloned()).unwrap();
             }
             Err(_) => {
                 // There are no more senders, so we can safely break
