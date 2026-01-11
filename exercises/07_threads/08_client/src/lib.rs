@@ -6,6 +6,7 @@ pub mod data;
 pub mod store;
 
 // TODO: flesh out the client implementation.
+#[derive(Clone)]
 pub struct TicketStoreClient {
     sender: Sender<Command>,
 }
@@ -22,7 +23,9 @@ impl TicketStoreClient {
     }
 
     pub fn get(&self, id: TicketId) -> Option<Ticket> {
-        todo!()
+        let (response_channel,response_receiver) = std::sync::mpsc::channel();
+        self.sender.send(Command::Get { id, response_channel }).unwrap();
+        response_receiver.recv().unwrap() 
     }
 }
 
