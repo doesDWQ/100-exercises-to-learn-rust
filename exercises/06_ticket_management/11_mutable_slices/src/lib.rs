@@ -2,7 +2,7 @@
 //  The slice should be modified in place.
 
 pub fn squared(slice: &mut [i32])  {
-    for g in slice {
+    for mut g in slice {
         *g *= *g;
     }
 }
