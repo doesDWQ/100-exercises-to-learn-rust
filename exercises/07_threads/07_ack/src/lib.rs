@@ -12,7 +12,7 @@ pub enum Command {
     },
     Get { 
         id: TicketId,
-        response_sender: Sender<Ticket>
+        response_sender: Sender<Option<Ticket>>
     }
 }
 
@@ -39,7 +39,7 @@ pub fn server(receiver: Receiver<Command>) {
                 response_sender,
             }) => {
                 let ticket = store.get(id).unwrap();
-                response_sender.send(ticket.clone()).unwrap()
+                response_sender.send(Some(ticket.clone())).unwrap()
             }
             Err(_) => {
                 // There are no more senders, so we can safely break
