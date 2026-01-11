@@ -56,8 +56,7 @@ impl TicketStore {
     }
 
     pub fn get(&self, id: TicketId) -> Option<&Ticket> {
-        let index = id.0;
-        self.tickets.as_slice()[index as usize]
+        self.tickets.iter().find(|t| t.id == id)
     }
 }
 
