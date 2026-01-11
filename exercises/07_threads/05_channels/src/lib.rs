@@ -25,8 +25,8 @@ pub fn launch() -> Sender<Command> {
 pub fn server(receiver: Receiver<Command>) {
     let mut ticket_store = TicketStore::new();
     while let Ok(cmd) = receiver.recv(){
-        if let cmd = Command::Insert(ticket_draf) {
-
+        if let Command::Insert(ticket_draft) = cmd {
+            ticket_store.add_ticket(ticket_draft);
         }
     }
 }
