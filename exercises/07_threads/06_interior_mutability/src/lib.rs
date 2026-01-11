@@ -17,8 +17,7 @@ impl<T> DropTracker<T> {
 
 impl<T> Drop for DropTracker<T> {
     fn drop(&mut self) {
-        let mut cnt: std::cell::RefMut<'_, i32> = self.counter.borrow_mut();
-        *cnt += 1;
+        *self.counter.borrow_mut() +=1;
     }
 }
 
