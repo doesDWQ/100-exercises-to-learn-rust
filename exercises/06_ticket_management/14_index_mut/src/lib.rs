@@ -12,7 +12,7 @@ pub struct TicketStore {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct TicketId(u64);
 
-#[derive(Clone, Debug, PartialEq, Copy)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct Ticket {
     pub id: TicketId,
     pub title: TicketTitle,
@@ -83,7 +83,7 @@ impl IndexMut<TicketId> for TicketStore {
 
 impl IndexMut<&TicketId> for TicketStore {
     fn index_mut(&mut self, index: &TicketId) -> &mut Self::Output {
-        self.tickets.iter_mut().find(|t| t.id == *index).unwrap()
+        self.index_mut(*index)
     }
 }
 
