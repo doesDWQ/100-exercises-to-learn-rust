@@ -13,7 +13,11 @@ pub struct TicketStore {
     tickets: Vec<Ticket>,
 }
 
-impl 
+impl TicketStore {
+    pub fn into_iter(&self) -> std::vec::IntoIter<Ticket> {
+        self.tickets.clone().into_iter()
+    }
+}
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct Ticket {
