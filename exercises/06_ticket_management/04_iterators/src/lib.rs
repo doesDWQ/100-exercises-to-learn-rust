@@ -13,9 +13,19 @@ pub struct TicketStore {
     tickets: Vec<Ticket>,
 }
 
-impl TicketStore {
-    pub fn into_iter(&self) -> std::vec::IntoIter<Ticket> {
-        self.tickets.clone().into_iter()
+// impl TicketStore {
+//     pub fn into_iter(&self) -> std::vec::IntoIter<Ticket> {
+//         self.tickets.clone().into_iter()
+//     }
+// }
+
+impl IntoIterator for TicketStore {
+    type Item = Ticket;
+
+    type IntoIter = std::vec::IntoIter<Self::Item>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        self.tickets.into_iter()
     }
 }
 
