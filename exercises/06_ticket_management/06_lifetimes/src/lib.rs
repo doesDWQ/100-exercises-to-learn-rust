@@ -35,7 +35,7 @@ impl TicketStore {
         self.tickets.iter()
     }
 
-    pub fn into_iter(&'_ self) -> std::slice::IntoIter<'_, Ticket> {
+    pub fn into_iter(&'_ self) -> std::slice::IntoIterator<'_, Ticket> {
         self.tickets.into_iter()
     }
 }
