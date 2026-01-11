@@ -1,5 +1,5 @@
 use std::sync::mpsc::{Receiver, Sender};
-use crate::{data::TicketDraft, store::TicketStore};
+use crate::{data::{Ticket, TicketDraft}, store::{TicketId, TicketStore}};
 
 pub mod data;
 pub mod store;
@@ -8,7 +8,7 @@ pub mod store;
 pub enum Command {
     Insert { 
         draft: TicketDraft,
-        response_sender: Sender<>
+        response_sender: Sender<TicketId>
     },
     Get { todo!() }
 }
