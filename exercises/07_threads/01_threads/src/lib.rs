@@ -15,7 +15,8 @@
 use std::thread;
 
 pub fn sum(v: Vec<i32>) -> i32 {
-    let (left, right) = v.as_mut_slice().split_at(v.len() / 2);
+    let mid = v.len() / 2;
+    let (left, right) = v.split_at(mid);
 
     let mut ret1 = 0;
     let mut ret2 = 0;
