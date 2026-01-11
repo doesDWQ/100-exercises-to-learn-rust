@@ -56,8 +56,8 @@ impl TicketStore {
     }
 
     pub fn get(&self, id: TicketId) -> Option<&Ticket> {
-        let index = id.0
-        self.tickets.get(index)
+        let index = id.0;
+        self.tickets.as_slice()[index as usize]
     }
 }
 
