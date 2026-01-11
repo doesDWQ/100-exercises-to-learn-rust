@@ -13,7 +13,12 @@ pub struct TicketStoreClient {
 
 impl TicketStoreClient {
     pub fn insert(&self, draft: TicketDraft) -> Result<TicketId, todo!()> {
-        todo!()
+        let (response_channel,response_receiver) = std::sync::mpsc::sync_channel(10);
+        self.sender.send(Command::Insert {
+             draft, 
+             response_channel,
+             }).unwrap();
+        response_receiver.recv().unwrap()
     }
 
     pub fn get(&self, id: TicketId) -> Result<Option<Ticket>, todo!()> {
