@@ -6,23 +6,29 @@ use std::sync::mpsc::{Receiver, SyncSender};
 pub mod data;
 pub mod store;
 
+#[derive(Debug, thiserror::Error)]
+#[error("The store is overloaded")]
+pub struct OverloadedError;
+
 #[derive(Clone)]
 pub struct TicketStoreClient {
     sender: SyncSender<Command>,
 }
 
 impl TicketStoreClient {
-    pub fn insert(&self, draft: TicketDraft) {
+    pub fn insert(&self, draft: TicketDraft) -> Result<TicketId, OverloadedError> {
         let (response_channel,response_receiver) = std::sync::mpsc::sync_channel(10);
-        self.sender.send(Command::Insert {
+        self.sender.try_send(Command::Insert {
              draft, 
              response_channel,
-             }).unwrap();
-        response_receiver.recv().unwrap()
+             }).map_err(|_| OverloadedError)?;
+        Ok(response_receiver.recv().unwrap())
     }
 
-    pub fn get(&self, id: TicketId) -> Result<Option<Ticket>, todo!()> {
-        todo!()
+    pub fn get(&self, id: TicketId) -> Result<Option<Ticket>, OverloadedError> {
+        let (response_channel,response_receiver) = std::sync::mpsc::sync_channel(10);
+        self.sender.try_send(Command::Get { id, response_channel }).map_err(|_| OverloadedError)?;
+        Ok(response_receiver.recv().unwrap())
     }
 }
 
@@ -39,7 +45,7 @@ enum Command {
     },
     Get {
         id: TicketId,
-        response_channel: todo!(),
+        response_channel: SyncSender<Option<Ticket>>,
     },
 }
 
