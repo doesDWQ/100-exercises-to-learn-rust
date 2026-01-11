@@ -45,7 +45,7 @@ impl TicketStore {
     }
 
     pub fn add_ticket(&mut self, ticket: TicketDraft) -> TicketId {
-        let ticket_id = TicketId(0);
+        let ticket_id = TicketId(self.tickets.len() as u64);
         self.tickets.push(Ticket { 
             id: ticket_id, 
             title: ticket.title, 
@@ -53,6 +53,10 @@ impl TicketStore {
             status: Status::ToDo,
         });
         ticket_id
+    }
+
+    pub fn get(&self, id: TicketId) -> Option<&Ticket> {
+        self.tickets.get(id.0)
     }
 }
 
