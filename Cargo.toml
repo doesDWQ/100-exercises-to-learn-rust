@@ -4,7 +4,7 @@ members = ["anyhow",
   "helpers/common",
   "helpers/mdbook-exercise-linker",
   "helpers/mdbook-link-shortener",
-  "helpers/ticket_fields",
+  "helpers/ticket_fields", "study",
 ]
 resolver = "2"
 
