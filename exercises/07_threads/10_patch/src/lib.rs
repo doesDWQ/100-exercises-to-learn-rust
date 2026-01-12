@@ -89,7 +89,7 @@ pub fn server(receiver: Receiver<Command>) {
                 patch,
                 response_channel,
             }) => {
-                
+                store.get_mut(patch.id).
             }
             Err(_) => {
                 // There are no more senders, so we can safely break
