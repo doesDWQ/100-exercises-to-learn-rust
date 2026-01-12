@@ -1,6 +1,7 @@
 https://rust-exercises.com/100-exercises/08_futures/01_async_fn.html
 
 
+
 # Learn Rust, one exercise at a time
 
 You've heard about Rust, but you never had the chance to try it out?\
