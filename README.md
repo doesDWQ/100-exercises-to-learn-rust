@@ -1,4 +1,4 @@
-https://rust-exercises.com/100-exercises/07_threads/10_patch.html
+https://rust-exercises.com/100-exercises/08_futures/01_async_fn.html
 
 
 # Learn Rust, one exercise at a time
