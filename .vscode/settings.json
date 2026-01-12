@@ -1,4 +1,5 @@
 {
     "code-auto-commit.autoPush": true,
     "code-auto-commit.commitTimeInterval": 60000,
+    "editor.wordWrap": "on",
 }
