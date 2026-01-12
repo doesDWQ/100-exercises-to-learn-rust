@@ -37,7 +37,8 @@ impl TicketStoreClient {
 
     pub fn update(&self, ticket_patch: TicketPatch) -> Result<bool, OverloadedError> {
         let (response_sender, response_receiver) =  sync_channel(1);
-        self.sender.try_send(Command::Update { patch: ticket_patch, response_channel: response_sender }).map(|_| OverloadedError)?;
+        self.sender.try_send(Command::Update { patch: ticket_patch, response_channel: response_sender })
+        .map_err(|_| OverloadedError)?;
         Ok(response_receiver.recv().unwrap())
     }
 }
