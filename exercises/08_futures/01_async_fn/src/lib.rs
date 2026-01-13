@@ -1,7 +1,4 @@
-use std::io::{self, BufRead};
-
-use anyhow::Ok;
-use tokio::{net::TcpListener, stream};
+use tokio::{net::TcpListener, stream, io};
 
 // TODO: write an echo server that accepts incoming TCP connections and
 //  echoes the received data back to the client.
@@ -14,10 +11,13 @@ use tokio::{net::TcpListener, stream};
 // - `tokio::net::TcpStream::split` to obtain a reader and a writer from the socket
 // - `tokio::io::copy` to copy data from the reader to the writer
 pub async fn echo(listener: TcpListener) -> Result<(), anyhow::Error> {
-    let (stream, addr) = listener.accept().await.unwrap();
-    let (reader, writer) = stream.split();
-    let (read_len) = io::copy(reader, writer);
-    Ok(())
+    loop {
+        let (mut stream, _) = listener.accept().await?;
+        let (mut reader, mut writer) = stream.split();
+        io::copy(
+            &mut reader, 
+            &mut  writer).await?;
+    }
 }
 
 #[cfg(test)]
